@@ -1,3 +1,7 @@
 theme: jekyll-theme-minimal
-title: 我的主页
-description: 这是我的个人网站
+title: FANG050829 的个人主页
+description: 学习笔记 · 项目记录
+lang: zh-CN
+show_downloads: false
+plugins:
+  - jekyll-seo-tag
