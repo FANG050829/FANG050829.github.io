@@ -1,0 +1,254 @@
+---
+---
+
+// 官方 jekyll-theme-minimal 的样式（布局、字体、代码高亮）
+@import "jekyll-theme-minimal";
+
+/* ==========================================================================
+   站点增强样式
+   思路：主题的原始配色抽成 CSS 变量，浅色模式沿用官方 minimal 的原始值，
+   深色模式只覆盖变量，组件样式全部基于变量编写，从而自动跟随主题。
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  // 背景与表面
+  --bg: #ffffff;
+  --surface: #f8f8f8;
+  --surface-alt: #f4f4f4;
+  --border: #e5e5e5;
+  --border-strong: #e0e0e0;
+
+  // 文字
+  --text: #727272;
+  --heading: #222222;
+  --heading-2: #393939;
+  --heading-3: #494949;
+  --text-strong: #222222;
+
+  // 链接与强调
+  --link: #267cb9;
+  --link-hover: #006699;
+  --accent: #267cb9;
+  --accent-soft: rgba(38, 124, 185, 0.1);
+
+  // 其它
+  --kbd-bg: #fafbfc;
+  --kbd-border: #c6cbd1;
+  --kbd-border-bottom: #959da5;
+  --kbd-text: #444d56;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-hover: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg: #0f1115;
+  --surface: #171a21;
+  --surface-alt: #1c2028;
+  --border: #2a2f3a;
+  --border-strong: #333947;
+
+  --text: #a8b0bd;
+  --heading: #eef1f6;
+  --heading-2: #dfe4ec;
+  --heading-3: #ccd3de;
+  --text-strong: #eef1f6;
+
+  --link: #5eb0ef;
+  --link-hover: #8ac8f5;
+  --accent: #5eb0ef;
+  --accent-soft: rgba(94, 176, 239, 0.14);
+
+  --kbd-bg: #1c2028;
+  --kbd-border: #333947;
+  --kbd-border-bottom: #454c5e;
+  --kbd-text: #ccd3de;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-hover: 0 8px 26px rgba(0, 0, 0, 0.55);
+}
+
+/* ---------- 基础元素改用变量 ---------- */
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--heading);
+  transition: color 0.25s ease;
+}
+
+h2 { color: var(--heading-2); }
+h3, h4, h5, h6 { color: var(--heading-3); }
+
+a {
+  color: var(--link);
+  transition: color 0.2s ease;
+}
+
+a:hover, a:focus {
+  color: var(--link-hover);
+}
+
+strong { color: var(--text-strong); }
+dt, th { color: var(--heading-3); }
+small { color: var(--text); }
+
+hr {
+  background: var(--border);
+}
+
+/* 代码块：深色模式下背景与文字需要单独覆盖 */
+code, pre { color: var(--text-strong); }
+
+pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+blockquote {
+  border-left: 2px solid var(--accent);
+  color: var(--text);
+  background: var(--accent-soft);
+  padding: 12px 18px;
+  border-radius: 0 6px 6px 0;
+}
+
+kbd {
+  background-color: var(--kbd-bg);
+  border: 1px solid var(--kbd-border);
+  border-bottom-color: var(--kbd-border-bottom);
+  color: var(--kbd-text);
+}
+
+th, td { border-bottom: 1px solid var(--border); }
+
+/* ---------- 布局：给左右两栏更多呼吸感 ---------- */
+
+.wrapper {
+  width: 960px;
+  max-width: 100%;
+}
+
+header {
+  width: 300px;
+  padding-right: 20px;
+}
+
+header h1 {
+  font-size: 30px;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+header h1 a {
+  color: var(--heading);
+  transition: color 0.2s ease;
+}
+
+header h1 a:hover {
+  color: var(--link);
+  font-weight: inherit;
+}
+
+header p {
+  color: var(--text);
+}
+
+section { width: 560px; }
+
+footer p, footer a {
+  color: var(--text);
+}
+
+/* ---------- 主题切换按钮 ---------- */
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 22px;
+  padding: 7px 14px;
+  font-size: 12px;
+  font-family: inherit;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.theme-toggle:hover {
+  color: var(--link);
+  border-color: var(--link);
+  background: var(--surface-alt);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.theme-toggle .icon {
+  display: inline-flex;
+  width: 14px;
+  height: 14px;
+}
+
+.theme-toggle .icon svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* 按钮上只显示"切到哪个主题"的图标 */
+.theme-toggle .icon-sun,
+.theme-toggle .icon-moon { display: none; }
+
+:root .theme-toggle .icon-sun,
+[data-theme="dark"] .theme-toggle .icon-moon { display: inline-flex; }
+
+[data-theme="dark"] .theme-toggle .icon-sun { display: none; }
+
+/* ---------- 响应式 ---------- */
+
+@media screen and (max-width: 960px) {
+  .wrapper { width: auto; }
+
+  header, section, footer {
+    float: none;
+    position: static;
+    width: auto;
+  }
+
+  header { padding-right: 0; }
+
+  section {
+    border-width: 1px 0;
+    padding: 24px 0;
+  }
+
+  .theme-toggle { margin-top: 16px; }
+}
+
+/* ---------- 无障碍：尊重系统的减少动效偏好 ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  body, h1, h2, h3, h4, h5, h6, a, .theme-toggle {
+    transition: none;
+  }
+}

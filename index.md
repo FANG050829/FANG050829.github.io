@@ -13,10 +13,17 @@ permalink: /
 ## 🛠️ 技能
 
 - **前端开发**：TypeScript、React / Next.js、Three.js、Tailwind CSS
+- **桌面应用**：Electron、Node.js、LLM 智能体、工具调用与审计设计
 - **小程序**：微信小程序、微信云开发、BLE 蓝牙通信
 - **常用工具**：Git、Prisma / SQLite
 
 ## 📂 项目
+
+### 留痕 Agent · Trace Agent
+
+运行在自己电脑上的 Windows 桌面自动化智能体（Electron + React）：替你操作文件、跑命令、截屏、控制浏览器、动键鼠，而它做过的每一件事都以事件流形式追加写入审计日志，可在时间线里实时回看，随时批准、拒绝、取消，并一键导出成自包含的 HTML 审计报告。核心是**审批门**（安全操作自动执行、危险操作必须确认、系统目录硬拒绝）与**局域网手机远程审批**。
+
+`Electron` `React` `TypeScript` `Node.js` · [🌐 在线体验](https://fang050829.github.io/trace-agent/) · [📦 GitHub 仓库](https://github.com/FANG050829/trace-agent)
 
 ### FLOORCRAFT · 铺面工坊
 
