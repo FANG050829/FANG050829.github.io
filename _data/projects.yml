@@ -1,0 +1,51 @@
+# 首页「项目」卡片数据
+# 字段说明：
+#   name        项目名（主标题）
+#   subtitle    副标题（可选）
+#   description 简介，支持 Markdown 行内语法（如 **加粗**）
+#   links       链接按钮列表，icon 可选 globe / github
+#   tags        技术标签列表
+- name: 留痕 Agent
+  subtitle: Trace Agent
+  description: >-
+    运行在自己电脑上的 Windows 桌面自动化智能体（Electron + React）：替你操作文件、跑命令、截屏、控制浏览器、动键鼠，而它做过的每一件事都以事件流形式追加写入审计日志，可在时间线里实时回看，随时批准、拒绝、取消，并一键导出成自包含的 HTML 审计报告。核心是**审批门**（安全操作自动执行、危险操作必须确认、系统目录硬拒绝）与**局域网手机远程审批**。
+  tags: [Electron, React, TypeScript, Node.js]
+  links:
+    - label: 在线体验
+      url: https://fang050829.github.io/trace-agent/
+      icon: globe
+    - label: GitHub 仓库
+      url: https://github.com/FANG050829/trace-agent
+      icon: github
+
+- name: FLOORCRAFT
+  subtitle: 铺面工坊
+  description: >-
+    面向咖啡馆、联合办公、精品零售的 **3D 商业空间规划器**：实时 3D 与平面图双视图，从布局推演到 PDF 图纸交付，渲染全部在浏览器本地完成，无需账号。
+  tags: [Next.js, Three.js, TypeScript]
+  links:
+    - label: 在线体验
+      url: https://fang050829.github.io/floorcraft/
+      icon: globe
+    - label: GitHub 仓库
+      url: https://github.com/FANG050829/floorcraft
+      icon: github
+
+- name: SmartCup
+  subtitle: 智能水杯小程序
+  description: >-
+    「清饮智护」智能水杯的配套微信小程序：饮水记录与提醒、水温 / 水量 / TDS 水质展示、三形态心情宠物、AI 喝水助手、家人关爱等，通过蓝牙直连水杯读取数据。
+  tags: [微信小程序, 云开发, BLE]
+  links:
+    - label: GitHub 仓库
+      url: https://github.com/FANG050829/smartcup_miniprogram_starter_fyk
+      icon: github
+
+- name: FANG050829.github.io
+  subtitle: 本站
+  description: 就是你正在看的这个主页，基于 GitHub Pages + Jekyll 搭建。
+  tags: [Jekyll]
+  links:
+    - label: GitHub 仓库
+      url: https://github.com/FANG050829/FANG050829.github.io
+      icon: github
