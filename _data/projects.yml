@@ -31,6 +31,19 @@
       url: https://github.com/FANG050829/floorcraft
       icon: github
 
+- name: 五子 5zi
+  subtitle: 联机五子棋
+  description: >-
+    极简画风的**联机五子棋**：填昵称、建房间，通过链接 / 二维码一键邀请好友对弈；内置 AI 引擎「弈心」三档难度，也可接入 OpenAI 兼容大模型执子对弈。五连判定、限时、悔棋等规则全部由服务端权威裁定，附带段位战绩、落子热力图与逐手复盘回放，免注册打开即玩。
+  tags: [Next.js, React, TypeScript, Socket.IO, Prisma]
+  links:
+    - label: 在线试玩
+      url: https://5zi.vercel.app
+      icon: globe
+    - label: GitHub 仓库
+      url: https://github.com/FANG050829/5zi
+      icon: github
+
 - name: SmartCup
   subtitle: 智能水杯小程序
   description: >-
