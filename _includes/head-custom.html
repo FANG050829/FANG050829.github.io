@@ -1,0 +1,90 @@
+<!-- 官方主题的自定义 head 注入点：深色 / 浅色主题切换 -->
+<!-- 说明：不覆盖官方布局，只注入一段样式、一段先于渲染执行的初始化脚本和一个悬浮切换按钮 -->
+
+<style>
+  /* ===== 深色模式：覆盖官方 minimal 主题的硬编码颜色 ===== */
+  html[data-theme="dark"] body { background-color: #0d1117; color: #b6c2cf; }
+  html[data-theme="dark"] h1, html[data-theme="dark"] h2,
+  html[data-theme="dark"] h3, html[data-theme="dark"] h4,
+  html[data-theme="dark"] h5, html[data-theme="dark"] h6,
+  html[data-theme="dark"] strong { color: #e6edf3; }
+  html[data-theme="dark"] h2 { color: #d7dee5; }
+  html[data-theme="dark"] h3, html[data-theme="dark"] h4,
+  html[data-theme="dark"] h5, html[data-theme="dark"] h6 { color: #ced5dc; }
+  html[data-theme="dark"] a { color: #539bf5; }
+  html[data-theme="dark"] a:hover, html[data-theme="dark"] a:focus { color: #74b3ff; }
+  html[data-theme="dark"] a small { color: #8b949e; }
+  html[data-theme="dark"] blockquote { border-left-color: #3d444d; }
+  html[data-theme="dark"] code, html[data-theme="dark"] pre { color: #c9d1d9; }
+  html[data-theme="dark"] pre { background-color: #161b22; border-color: #30363d; }
+  html[data-theme="dark"] th, html[data-theme="dark"] td { border-bottom-color: #30363d; }
+  html[data-theme="dark"] dt, html[data-theme="dark"] th { color: #d5d8dc; }
+  html[data-theme="dark"] kbd {
+    background-color: #161b22; border-color: #30363d; border-bottom-color: #454f59;
+    color: #c9d1d9; box-shadow: inset 0 -1px 0 #454f59;
+  }
+  html[data-theme="dark"] hr { background-color: #30363d; }
+  html[data-theme="dark"] .highlight { background-color: #161b22; }
+
+  /* ===== 悬浮切换按钮（右下角） ===== */
+  .theme-toggle {
+    position: fixed; right: 18px; bottom: 18px; z-index: 99;
+    width: 42px; height: 42px; border-radius: 50%;
+    border: 1px solid rgba(128, 128, 128, 0.45);
+    background: #fff; color: #333;
+    font-size: 18px; line-height: 1;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .theme-toggle:hover { transform: scale(1.06); }
+  html[data-theme="dark"] .theme-toggle {
+    background: #1c2128; color: #e6edf3; border-color: #3d444d;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  }
+  @media print { .theme-toggle { display: none; } }
+</style>
+
+<script>
+  // 先于页面渲染执行：跟随上次选择，否则跟随系统偏好，避免深色模式下白屏闪烁
+  (function () {
+    try {
+      var stored = localStorage.getItem("theme");
+      var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      if ((stored || (prefersDark ? "dark" : "light")) === "dark") {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    } catch (e) {
+      /* 隐私模式下 localStorage 可能不可用，忽略即可 */
+    }
+  })();
+
+  // 官方布局中不存在按钮，这里在 DOM 就绪后注入一个右下角悬浮按钮
+  document.addEventListener("DOMContentLoaded", function () {
+    var button = document.createElement("button");
+    button.className = "theme-toggle";
+    button.type = "button";
+    button.setAttribute("aria-label", "切换深色 / 浅色主题");
+    button.title = "切换深色 / 浅色主题";
+
+    function sync() {
+      var isDark = document.documentElement.getAttribute("data-theme") === "dark";
+      button.textContent = isDark ? "☀️" : "🌙";
+    }
+
+    button.addEventListener("click", function () {
+      var isDark = document.documentElement.getAttribute("data-theme") === "dark";
+      var next = isDark ? "light" : "dark";
+      if (next === "dark") {
+        document.documentElement.setAttribute("data-theme", "dark");
+      } else {
+        document.documentElement.removeAttribute("data-theme");
+      }
+      try { localStorage.setItem("theme", next); } catch (e) { /* 忽略存储失败 */ }
+      sync();
+    });
+
+    sync();
+    document.body.appendChild(button);
+  });
+</script>

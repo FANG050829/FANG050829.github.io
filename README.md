@@ -12,15 +12,21 @@
 ├── 404.md                # 404 页面
 ├── _config.yml           # Jekyll 站点配置（标题、主题等）
 ├── Gemfile               # 本地预览所需依赖
-└── _data
-    └── projects.yml      # 首页「项目」数据，改这里即可增删项目
+├── _data
+│   └── projects.yml      # 首页「项目」数据，改这里即可增删项目
+└── _includes
+    └── head-custom.html  # 官方主题的自定义 head 注入点：深色/浅色主题切换
 ```
 
 ## 主题
 
 直接使用 GitHub Pages 官方主题 [`jekyll-theme-minimal`](https://github.com/pages-themes/minimal)（`_config.yml` 中 `theme: jekyll-theme-minimal`），
-未做任何布局或样式覆盖，页面内容全部写在 `index.md` 的 Markdown 里，
+不覆盖布局与样式，页面内容全部写在 `index.md` 的 Markdown 里，
 由 Liquid 循环读取 `_data/projects.yml` 生成项目列表。
+
+深色 / 浅色切换通过官方自定义点 `_includes/head-custom.html` 实现：
+右下角悬浮按钮，首次访问跟随系统偏好，切换后按 `localStorage` 记忆，
+深色配色以 CSS 覆盖官方主题的硬编码颜色。
 
 ## 新增一个项目
 
